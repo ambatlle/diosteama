@@ -31,5 +31,7 @@ func Command(update tgbotapi.Update, bot *tgbotapi.BotAPI) {
 	args := argv[1:]
 
 	fn := invokers[cmd]
-	fn(update, bot, args)
+	if fn != nil {
+		fn(update, bot, args)
+	}
 }
