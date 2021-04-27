@@ -19,7 +19,7 @@ func soy(update tgbotapi.Update, bot *tgbotapi.BotAPI, argv []string) {
 		err := database.SetNick(update.Message.From, nick)
 		if err != nil {
 			if errors.Is(err, database.ErrPandaExists) {
-				reply = "Tu ya eres"
+				reply = fmt.Sprintf("Tu ya eres %s", nick)
 			} else {
 				reply = fmt.Sprintf("Algo no fue bien: %s", err)
 			}
