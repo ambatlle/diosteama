@@ -1,6 +1,7 @@
 package commands
 
 import (
+	"log"
 	"strings"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
@@ -28,8 +29,10 @@ func Command(update tgbotapi.Update, bot *tgbotapi.BotAPI) {
 	cmd := argv[0][1:]
 	args := argv[1:]
 
-	fn := invokers[cmd]
-	if fn != nil {
+	fn, ok := invokers[cmd]
+	if ok {
 		fn(update, bot, args)
+	} else {
+		log.Printf("[Command] Don't look at me! I don't know what %s means.", cmd)
 	}
 }
